@@ -1,5 +1,5 @@
 const db_conn = require('../config/db');
-const Tutorial = require('../models/Tutorial');
+const Tutorial = require('./Tutorial');
 
 const connectDB = async () => {
   await db_conn.authenticate();
@@ -10,11 +10,10 @@ const connectDB = async () => {
 
   if (process.env.NODE_ENV === 'Dev') {
     await db_conn.sync({ force: true }); // re-create models and tables
+    console.log(`PostgreSQL Tables Created`.blue);
   } else {
     await db_conn.sync(); // create models
   }
-
-  console.log(`PostgreSQL Tables Created`.blue);
 };
 
 module.exports = connectDB;

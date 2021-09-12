@@ -8,7 +8,7 @@ const colors = require('colors');
 // load config file
 dotenv.config({ path: './config/.env' });
 
-const connectDB = require('./controllers/db'); // postgresql conn
+const connectDB = require('./models/db'); // postgresql conn
 connectDB(); // connect to db
 
 // route files
