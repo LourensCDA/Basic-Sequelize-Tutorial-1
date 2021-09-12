@@ -11,6 +11,9 @@ dotenv.config({ path: './config/.env' });
 const connectDB = require('./controllers/db'); // postgresql conn
 connectDB(); // connect to db
 
+// route files
+const tutorials = require('./routes/tutorials');
+
 const app = express();
 
 var corsOptions = {
@@ -18,6 +21,10 @@ var corsOptions = {
 };
 
 app.use(cors(corsOptions));
+
+app.use(express.json());
+
+app.use('/tutorials', tutorials);
 
 // simple route
 app.get('/', (req, res) => {
