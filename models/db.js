@@ -1,7 +1,6 @@
 const db_conn = require('../config/db');
-const Tutorial = require('./Tutorial');
 
-const connectDB = async () => {
+module.exports = async function () {
   await db_conn.authenticate();
 
   const db_ver = await db_conn.databaseVersion();
@@ -15,5 +14,3 @@ const connectDB = async () => {
     await db_conn.sync(); // create models
   }
 };
-
-module.exports = connectDB;

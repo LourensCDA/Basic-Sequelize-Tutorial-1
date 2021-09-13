@@ -1,7 +1,7 @@
 const Tutorial = require('../models/Tutorial');
 
 // Create and Save a new Tutorial
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
   // Validate request
   // res.status(200).json(req.);
   if (!req.body.title) {
@@ -19,16 +19,9 @@ exports.create = (req, res) => {
   };
 
   // Save Tutorial in the database
-  Tutorial.create(tutorial)
-    .then((data) => {
-      res.status(201).json(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message:
-          err.message || 'Some error occurred while creating the Tutorial.',
-      });
-    });
+  data = await Tutorial.create(tutorial);
+
+  res.status(201).json(data);
 };
 
 // Retrieve all Tutorials from the database.
