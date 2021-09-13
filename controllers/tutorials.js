@@ -25,7 +25,14 @@ exports.create = async (req, res) => {
 };
 
 // Retrieve all Tutorials from the database.
-exports.findAll = (req, res) => {};
+exports.findAll = async (req, res) => {
+  const title = req.query.title;
+  var condition = title ? { title: { [Op.iLike]: `%${title}%` } } : null;
+
+  data = await Tutorial.findAll({ where: condition });
+
+  res.status(200).json(data);
+};
 
 // Find a single Tutorial with an id
 exports.findOne = (req, res) => {};

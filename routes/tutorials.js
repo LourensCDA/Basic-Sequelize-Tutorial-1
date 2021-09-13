@@ -1,7 +1,7 @@
 const express = require('express');
-const { create } = require('../controllers/tutorials');
+const { create, findAll } = require('../controllers/tutorials');
 const router = express.Router();
 
-router.route('/').post(create);
+router.route('/').get(findAll).post(create);
 
 module.exports = router;
