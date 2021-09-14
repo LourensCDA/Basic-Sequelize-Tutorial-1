@@ -79,7 +79,7 @@ exports.deleteOne = async (req, res) => {
 
 // Delete all Tutorials from the database.
 exports.deleteAll = async (req, res) => {
-  nums = Tutorial.destroy({
+  nums = await Tutorial.destroy({
     where: {},
     truncate: false,
   });
