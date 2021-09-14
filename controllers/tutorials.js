@@ -48,7 +48,7 @@ exports.updateOne = async (req, res) => {
   const id = req.params.id;
 
   num = await Tutorial.update(req.body, { where: { id: id } });
-  console.log(num);
+
   if (num == 1) {
     res.status(200).json({
       message: 'Tutorial was updated successfully.',
@@ -65,7 +65,7 @@ exports.deleteOne = async (req, res) => {
   const id = req.params.id;
 
   num = await Tutorial.destroy({ where: { id: id } });
-  if (num === 1) {
+  if (num == 1) {
     res.status(200).json({
       message: 'Tutorial was deleted successfully.',
     });
