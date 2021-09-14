@@ -26,11 +26,6 @@ app.use(express.json());
 
 app.use('/tutorials', tutorials);
 
-// simple route
-// app.get('/', (req, res) => {
-//   res.status(200).json({ message: 'Welcome to bezkoder application.' });
-// });
-
 // set port, listen for requests
 const PORT = process.env.PORT || 5000;
 
