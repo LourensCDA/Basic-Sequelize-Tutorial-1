@@ -35,16 +35,61 @@ exports.findAll = async (req, res) => {
 };
 
 // Find a single Tutorial with an id
-exports.findOne = (req, res) => {};
+exports.findOne = async (req, res) => {
+  const id = req.params.id;
+
+  data = await Tutorial.findByPk(id);
+
+  res.status(200).json(data);
+};
 
 // Update a Tutorial by the id in the request
-exports.update = (req, res) => {};
+exports.update = async (req, res) => {
+  const id = req.params.id;
+
+  num = await Tutorial.update(req.body, { where: { id: id } });
+
+  if (num === 1) {
+    res.status(200).json({
+      message: 'Tutorial was updated successfully.',
+    });
+  } else {
+    res.status(400).json({
+      message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found or req.body is empty!`,
+    });
+  }
+};
 
 // Delete a Tutorial with the specified id in the request
-exports.delete = (req, res) => {};
+exports.delete = async (req, res) => {
+  const id = req.params.id;
+
+  num = await Tutorial.destroy({ where: { id: id } });
+  if (num === 1) {
+    res.status(200).json({
+      message: 'Tutorial was deleted successfully.',
+    });
+  } else {
+    res.status(400).json({
+      message: `Cannot delete Tutorial with id=${id}. Maybe Tutorial was not found!`,
+    });
+  }
+};
 
 // Delete all Tutorials from the database.
-exports.deleteAll = (req, res) => {};
+exports.deleteAll = async (req, res) => {
+  nums = Tutorial.destroy({
+    where: {},
+    truncate: false,
+  });
+  res.status(200).json({
+    message: `${nums} Tutorials were deleted successfully!`,
+  });
+};
 
 // Find all published Tutorials
-exports.findAllPublished = (req, res) => {};
+exports.findAllPublished = async (req, res) => {
+  data = await Tutorial.findAll({ where: { published: true } });
+
+  res.status(200).json(data);
+};
