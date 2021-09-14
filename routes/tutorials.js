@@ -11,7 +11,7 @@ const {
 const router = express.Router();
 
 router.route('/').get(findAll).post(create).delete(deleteAll);
-router.route('/:id').get(findOne).put(updateOne).delete(deleteOne);
 router.route('/published').get(findAllPublished);
+router.route('/:id').get(findOne).put(updateOne).delete(deleteOne);
 
 module.exports = router;

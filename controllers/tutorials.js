@@ -1,4 +1,5 @@
 const Tutorial = require('../models/Tutorial');
+const { Op } = require('sequelize');
 
 // Create and Save a new Tutorial
 exports.create = async (req, res) => {
