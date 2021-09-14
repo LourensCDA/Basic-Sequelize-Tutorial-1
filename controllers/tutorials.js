@@ -44,7 +44,7 @@ exports.findOne = async (req, res) => {
 };
 
 // Update a Tutorial by the id in the request
-exports.update = async (req, res) => {
+exports.updateOne = async (req, res) => {
   const id = req.params.id;
 
   num = await Tutorial.update(req.body, { where: { id: id } });
@@ -61,7 +61,7 @@ exports.update = async (req, res) => {
 };
 
 // Delete a Tutorial with the specified id in the request
-exports.delete = async (req, res) => {
+exports.deleteOne = async (req, res) => {
   const id = req.params.id;
 
   num = await Tutorial.destroy({ where: { id: id } });
